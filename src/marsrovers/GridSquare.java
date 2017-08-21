@@ -18,7 +18,7 @@ public class GridSquare {
         explored = false;
     }
 
-    //getters and setters
+    //getters and setters of local variables
     
     public boolean isExplored() {
         return explored;
