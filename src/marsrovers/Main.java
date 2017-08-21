@@ -3,6 +3,7 @@ package marsrovers;
 
 
 /**
+ * Console application for "Mars Rovers" programming challenge. 
  *
  * @author markhebberd@gmail.com
  */
@@ -16,6 +17,7 @@ public class Main {
     
     public static void main(String[] args) throws OutOfBoundsException {
         
+        //create plateau and Nasa Control Center
         int[] plateauSize = {5,5};
         PlateauGrid plateauGrid = new PlateauGrid( plateauSize) ;
         NasaControlCenter nasaControlCenter = new NasaControlCenter(plateauGrid);
@@ -24,7 +26,7 @@ public class Main {
         Rover rover = new Rover( new RoverPosition(1, 2, Direction.N) );
         nasaControlCenter.setRover( rover );
         
-        moveRover(nasaControlCenter, "LMLMLMLMM", false); 
+        nasaControlCenter.moveRover("LMLMLMLMM", false);
         nasaControlCenter.getRover().printRoverPosition();
         
 
@@ -32,19 +34,8 @@ public class Main {
         rover = new Rover( new RoverPosition(3, 3, Direction.E) );
         nasaControlCenter.setRover(rover);
         
-        moveRover(nasaControlCenter, "MMRMMRMRRM", false);
+        nasaControlCenter.moveRover("MMRMMRMRRM", false);
         nasaControlCenter.getRover().printRoverPosition();
 
-    }
-
-    
-    private static void moveRover(NasaControlCenter nasaControlCenter, String movements, boolean printDebugOutput) {
-         try{
-            nasaControlCenter.moveRover(movements, printDebugOutput); 
-        }
-        catch (OutOfBoundsException OOB){
-            System.out.println(OOB);
-        }
-    }
-    
+    }    
 }
