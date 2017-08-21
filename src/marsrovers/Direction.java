@@ -11,10 +11,10 @@ package marsrovers;
  */
 public enum Direction {
 
-    N   ( 0,     1),
-    S   ( 0,    -1),
-    E   ( 1,     0),
-    W   (-1,     0);
+    N   ( 0,  1),
+    S   ( 0, -1),
+    E   ( 1,  0),
+    W   (-1,  0);
     
     private final int xPositionChange;
     private final int yPositionChange;
