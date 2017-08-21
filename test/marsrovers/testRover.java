@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 /**
  *
@@ -20,6 +22,8 @@ public class testRover {
     RoverPosition rp = new RoverPosition(0,0,Direction.N);
     Rover rover = new Rover(rp);
     NasaControlCenter nasaControlCenter = new NasaControlCenter(pg);
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     
     public testRover() {
     }
@@ -35,6 +39,9 @@ public class testRover {
     @Before
     public void setUp() {
         nasaControlCenter.setRover(rover);
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        
     }
     
     @After
@@ -46,6 +53,9 @@ public class testRover {
         nasaControlCenter = null;
     }
 
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
+    
     @Test
     public void testRoverTurnRight() throws OutOfBoundsException {         
         nasaControlCenter.moveRover("R", false);
@@ -78,36 +88,40 @@ public class testRover {
         assertEquals(rover.position.getyPosition(), 0);
     }
     
-    @Test(expected=OutOfBoundsException.class)
+    @Test
     public void testOutOfBoundsExceptionWest() throws OutOfBoundsException { 
+        expectedEx.expect(OutOfBoundsException.class);
+        expectedEx.expectMessage("Rover outside Plateau at position -1 0 W");
         nasaControlCenter.moveRover("LM", false);
     }
     
-    @Test(expected=OutOfBoundsException.class)
+    @Test
     public void testOutOfBoundsExceptionNorth() throws OutOfBoundsException { 
+        expectedEx.expect(OutOfBoundsException.class);
+        expectedEx.expectMessage("Rover outside Plateau at position 0 6 N");
         nasaControlCenter.moveRover("MMMMMM", false);
     }
     
-    @Test(expected=OutOfBoundsException.class)
+    @Test
     public void testOutOfBoundsExceptionSouth() throws OutOfBoundsException { 
+        expectedEx.expect(OutOfBoundsException.class);
+        expectedEx.expectMessage("Rover outside Plateau at position 0 -1 S");
         nasaControlCenter.moveRover("LLM", false);
     }
     
-    @Test(expected=OutOfBoundsException.class)
-    public void testOutOfBoundsExceptionEast() throws OutOfBoundsException { 
+    @Test
+    public void testOutOfBoundsExceptionEast() throws OutOfBoundsException {
+        expectedEx.expect(OutOfBoundsException.class);
+        expectedEx.expectMessage("Rover outside Plateau at position 6 0 E");
         nasaControlCenter.moveRover("RMMMMMM", false);
+        
     }
     
     @Test
     public void testRoverInvalidInput() throws OutOfBoundsException { 
-        
-        final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(myOut));
-
+ 
         nasaControlCenter.moveRover("P", false);
-
-        final String standardOutput = myOut.toString().trim();
-        
+        final String standardOutput = outContent.toString().trim();
         assertEquals("Invalid movement string, must contain only 'M', 'L' or 'R'", standardOutput);
     }
     
