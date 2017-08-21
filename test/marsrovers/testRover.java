@@ -23,7 +23,6 @@ public class testRover {
     Rover rover = new Rover(rp);
     NasaControlCenter nasaControlCenter = new NasaControlCenter(pg);
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     
     public testRover() {
     }
@@ -39,9 +38,7 @@ public class testRover {
     @Before
     public void setUp() {
         nasaControlCenter.setRover(rover);
-        System.setOut(new PrintStream(outContent));
-        System.setErr(new PrintStream(errContent));
-        
+        System.setOut(new PrintStream(outContent));        
     }
     
     @After
@@ -118,8 +115,7 @@ public class testRover {
     }
     
     @Test
-    public void testRoverInvalidInput() throws OutOfBoundsException { 
- 
+    public void testRoverMovementWithInvalidInput() throws OutOfBoundsException { 
         nasaControlCenter.moveRover("P", false);
         final String standardOutput = outContent.toString().trim();
         assertEquals("Invalid movement string, must contain only 'M', 'L' or 'R'", standardOutput);
