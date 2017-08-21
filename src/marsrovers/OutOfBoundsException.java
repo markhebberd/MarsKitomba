@@ -2,8 +2,10 @@
 package marsrovers;
 
 /**
- *
- * @author markh
+ * OutOfBoundsException extends Exception to demonstrate when rover is outside 
+ * given coordinates. 
+ * 
+ * @author markhebberd@gmail.com
  */
 public class OutOfBoundsException extends Exception {
 

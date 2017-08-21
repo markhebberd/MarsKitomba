@@ -10,33 +10,33 @@ public class RoverPosition {
     private int yPosition;
     private Direction direction;
     
-    public RoverPosition(int xPosition, int yPosition, Direction direction) {
+    protected RoverPosition(int xPosition, int yPosition, Direction direction) {
     this.xPosition = xPosition;
     this.yPosition = yPosition;
     this.direction = direction;
     }
 
-    public int getxPosition() {
+    protected int getxPosition() {
         return xPosition;
     }
 
-    public void setxPosition(int xPosition) {
+    protected void setxPosition(int xPosition) {
         this.xPosition = xPosition;
     }
 
-    public int getyPosition() {
+    protected int getyPosition() {
         return yPosition;
     }
 
-    public void setyPosition(int yPosition) {
+    protected void setyPosition(int yPosition) {
         this.yPosition = yPosition;
     }
 
-    public Direction getDirection() {
+    protected Direction getDirection() {
         return direction;
     }
 
-    public void setDirection(Direction direction) {
+    protected void setDirection(Direction direction) {
         this.direction = direction;
     }
     

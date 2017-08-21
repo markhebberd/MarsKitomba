@@ -2,28 +2,28 @@
 package marsrovers;
 
 /**
- *
- * @author markh
+ * Direction represents cardinal directions North, South, East & West
+ * 
+ * xPositionChange: x coordinate change if rover moves facing in this direction
+ * yPositionChange: y coordinate change if rover moves facing in this direction
+ * 
+ * @author markhebberd@gmail.com
  */
 public enum Direction {
 
-    /**
-     *
-     */
     N   ( 0,     1),
     S   ( 0,    -1),
     E   ( 1,     0),
     W   (-1,     0);
     
-    
     private final int xPositionChange;
     private final int yPositionChange;
 
-    public int getxPositionChange() {
+    protected int getxPositionChange() {
         return xPositionChange;
     }
 
-    public int getyPositionChange() {
+    protected int getyPositionChange() {
         return yPositionChange;
     }
     
