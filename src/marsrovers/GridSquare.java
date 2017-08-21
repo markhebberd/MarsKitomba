@@ -14,6 +14,12 @@ package marsrovers;
 public class GridSquare {
     private boolean explored;
 
+    protected GridSquare() {
+        explored = false;
+    }
+
+    //getters and setters
+    
     public boolean isExplored() {
         return explored;
     }
@@ -21,10 +27,4 @@ public class GridSquare {
     protected void setExplored(boolean explored) {
         this.explored = explored;
     }
-    
-    protected GridSquare() {
-        explored = false;
-    }
- 
-    
 }
