@@ -11,9 +11,9 @@ public class NasaControlCenter {
     private Rover rover;
     
     /**
-     * Constructor
+     * NasaControlCenter constructor
      * 
-     * @param plateauGrid - plateauGrid that NasaControlCenter will be exploring. 
+     * @param plateauGrid - plateauGrid that NasaControlCenter will manage. 
      */
     protected NasaControlCenter(PlateauGrid plateauGrid) {
         this.plateauGrid = plateauGrid;
