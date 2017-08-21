@@ -1,6 +1,8 @@
 
 package marsrovers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -94,6 +96,19 @@ public class testRover {
     @Test(expected=OutOfBoundsException.class)
     public void testOutOfBoundsExceptionEast() throws OutOfBoundsException { 
         nasaControlCenter.moveRover("RMMMMMM", false);
+    }
+    
+    @Test
+    public void testRoverInvalidInput() throws OutOfBoundsException { 
+        
+        final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+
+        nasaControlCenter.moveRover("P", false);
+
+        final String standardOutput = myOut.toString().trim();
+        
+        assertEquals("Invalid movement string, must contain only 'M', 'L' or 'R'", standardOutput);
     }
     
 }

@@ -100,7 +100,7 @@ public class Rover {
                 }
                 break;
             default:
-                System.out.println("invalid movement string, must contain only 'M', 'L' or 'R'");
+                System.out.println("Invalid movement string, must contain only 'M', 'L' or 'R'");
                 break;
         }
     }
