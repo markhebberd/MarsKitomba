@@ -2,7 +2,8 @@
 package marsrovers;
 
 /**
- *
+ * NasaControlCenter manages the movement of the rover on the plateau. 
+ * 
  * @author markhebberd@gmail.com
  */
 public class NasaControlCenter {
@@ -10,14 +11,16 @@ public class NasaControlCenter {
     private Rover rover;
     
     /**
-     * Constructor of NasaControlCenter
-     * @param plateauGrid 
+     * Constructor
+     * 
+     * @param plateauGrid - plateauGrid that NasaControlCenter will be exploring. 
      */
     protected NasaControlCenter(PlateauGrid plateauGrid) {
         this.plateauGrid = plateauGrid;
     }
     
     /**
+     * moveRover transmits each movement to the rover and checks to ensure rover not outside the plateau. 
      * 
      * @param movements - string representing movements for rover to complete, Must contain only 'M', 'R' & 'L'
      * @param debugOutput - if true will print position for each movement of the rover. 
@@ -30,13 +33,13 @@ public class NasaControlCenter {
             int rxp = rover.position.getxPosition();
             int ryp = rover.position.getyPosition();
 
-            if (rxp < 0 || rxp > plateauGrid.width || ryp < 0 || ryp > plateauGrid.height ){
+            if (rxp < 0 || rxp > plateauGrid.getWidth() || ryp < 0 || ryp > plateauGrid.getLength() ){
                 throw new OutOfBoundsException("Rover outside Plateau at position " + rxp + " " + ryp + " " + rover.position.getDirection());
             }
         } 
     }
     
-    // Getters and setters for plateauGrid and rover. 
+    // Getters and setters of local variables. 
     
     protected PlateauGrid getPlateauGrid() {
         return plateauGrid;
